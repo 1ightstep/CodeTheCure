@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 60%;
+}
+
+.navBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.loginButton {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.signupButton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
