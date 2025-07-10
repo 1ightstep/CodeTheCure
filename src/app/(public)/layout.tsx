@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Header from "@/components/layout/header/header";
-import "./globals.css";
-import { geistSans, geistMono } from "@/app/ui/fonts";
+import Header from "@/components/public/Header";
+import "@/styles/public-globals.css";
+import { geistSans, geistMono } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Code The Cure",
