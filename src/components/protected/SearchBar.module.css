@@ -1,0 +1,28 @@
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar {
+  height: 100%;
+  width: 100%;
+}
+
+.searchBarInput {
+  height: 2rem;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--light-foreground);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.searchBarInput::placeholder {
+  color: var(--foreground);
+  font-weight: 300;
+}
+
+.searchBarInput:focus {
+  outline: none;
+}
