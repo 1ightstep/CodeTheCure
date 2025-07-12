@@ -1,6 +1,7 @@
 "use client";
 import styles from "./SideBar.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faFolder, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -17,15 +18,15 @@ export default function SideBar() {
         />
       </div>
       <div className={styles.sideBarItemContainer}>
-        <div className={styles.sideBarFeatureItem}>
+        <Link href="/engine" className={styles.sideBarFeatureItem}>
           <FontAwesomeIcon icon={faSearch} />
-        </div>
-        <div className={styles.sideBarFeatureItem}>
+        </Link>
+        <Link href="/folder" className={styles.sideBarFeatureItem}>
           <FontAwesomeIcon icon={faFolder} />
-        </div>
-        <div className={styles.sideBarFeatureItem}>
+        </Link>
+        <Link href="/account" className={styles.sideBarFeatureItem}>
           <FontAwesomeIcon icon={faUser} />
-        </div>
+        </Link>
       </div>
     </div>
   );

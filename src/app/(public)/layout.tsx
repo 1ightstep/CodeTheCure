@@ -18,7 +18,7 @@ export default function PublicLayout({
   const user = getCurrentUser();
 
   if (user) {
-    redirect("/app");
+    redirect("/engine");
   }
 
   return (

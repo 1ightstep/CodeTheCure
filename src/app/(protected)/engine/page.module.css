@@ -1,0 +1,14 @@
+.engine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.engineContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  padding-bottom: 2rem;
+}
