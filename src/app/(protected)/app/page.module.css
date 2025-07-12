@@ -1,12 +1,11 @@
-.engine {
+.app {
   height: 100vh;
   width: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.engineContainer {
+.appContainer {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

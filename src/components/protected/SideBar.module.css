@@ -1,0 +1,23 @@
+.sideBar {
+  height: 100vh;
+  width: fit-content;
+  background-color: var(--light-foreground);
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideBarItemContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sideBarFeatureItem {
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5rem;
+}

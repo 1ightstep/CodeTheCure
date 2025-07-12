@@ -1,7 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #4e4e4e;
-  --light-foreground: #e2e2e2;
+  --light-foreground: #eeeeee;
   --brand: #86da67;
 
   --text-xs: 0.75rem;
@@ -16,6 +16,12 @@
   --leading-tight: 1.1;
   --leading-normal: 1.5;
   --leading-relaxed: 1.8;
+}
+
+/* Font Awesome styles */
+.svg-inline--fa {
+  font-size: var(--text-xl);
+  color: var(--foreground);
 }
 
 html,
