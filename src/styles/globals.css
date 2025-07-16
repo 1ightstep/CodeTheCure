@@ -85,4 +85,10 @@ button {
   font-size: inherit;
   color: inherit;
   border: var(--light-foreground) 1px solid;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
+  transform: scale(1.05);
 }
