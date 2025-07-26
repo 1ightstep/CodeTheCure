@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import SideBar from "@/components/protected/SideBar";
-import { geistSans, geistMono } from "@/lib/fonts";
+import { geistSans, geistMono } from "@/app/ui/fonts";
 import { Metadata } from "next";
 import styles from "./layout.module.css";
 

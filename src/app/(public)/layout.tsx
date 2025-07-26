@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/public/Header";
 import "@/styles/globals.css";
-import { geistSans, geistMono } from "@/lib/fonts";
+import { geistSans, geistMono } from "@/app/ui/fonts";
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 

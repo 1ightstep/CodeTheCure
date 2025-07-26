@@ -2,26 +2,46 @@
 import styles from "./page.module.css";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import SearchBar from "@/components/protected/SearchBar";
 import SourceCard from "@/components/protected/SourceCard";
+import getSearch from "@/app/api/getSearch";
+
+interface SourceCardProps {
+  title: string;
+  publicationDate: string;
+  aiSummary: string;
+  author: string;
+  sourceLink: string;
+  onSave: () => void;
+  onTrash: () => void;
+}
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
-  const query = searchParams.get("q");
+  const [query, setQuery] = useState(searchParams.get("q"));
 
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<SourceCardProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
     if (!query) return;
 
-    fetch(`/api/v1/search?q=${query}`)
-      .then((res) => res.json())
-      .then((data) => setResults(data.results || []));
+    const fetchResults = async () => {
+      const queryResults: SourceCardProps[] = await getSearch(query);
+      setResults(queryResults);
+    };
+
+    setIsLoading(false);
   }, [query]);
 
   function handleSearch(newQuery: string) {
     if (!newQuery.trim()) return;
+    setQuery(newQuery);
+    setIsLoading(true);
+    router.push(`/engine/search?q=${newQuery}`);
     console.log(`Searching for: ${newQuery}`);
   }
 
@@ -30,15 +50,22 @@ export default function SearchPage() {
       <div className={styles.searchContentContainer}>
         <SearchBar onSearch={handleSearch} width="100%" height="2rem" />
         <div className={styles.resultContainer}>
-          <SourceCard
-            title="Testing"
-            publicationDate="7/26/2025"
-            aiSummary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            author="John Doe"
-            sourceLink="https://example.com"
-            onSave={() => console.log("Saved!")}
-            onTrash={() => console.log("Trashed!")}
-          />
+          {isLoading && <h3>Womp Womp, your content is loading</h3>}
+          {results.length === 0 && (
+            <h3>Uhmm, try searching for something else</h3>
+          )}
+          {results.map((item, index) => (
+            <SourceCard
+              key={index}
+              title={item.title}
+              publicationDate={item.publicationDate}
+              aiSummary={item.aiSummary}
+              author={item.author}
+              sourceLink={item.sourceLink}
+              onSave={() => console.log("Saved!")}
+              onTrash={() => console.log("Trashed!")}
+            />
+          ))}
         </div>
         <div className={styles.showMoreContainer}>
           <button className={styles.showMoreButton}>Show more</button>
