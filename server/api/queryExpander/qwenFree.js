@@ -25,7 +25,6 @@ async function qwenFree(query) {
 
   if (!res.ok) {
     throw Error("Qwen query expansion failed.");
-    return;
   }
 
   const data = await res.json();

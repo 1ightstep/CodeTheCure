@@ -4,7 +4,7 @@ import LandingHero from "@/components/public/LandingHero";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <LandingHero></LandingHero>
+      <LandingHero />
     </main>
   );
 }
