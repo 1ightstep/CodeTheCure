@@ -1,5 +1,6 @@
 const express = require("express");
 const logger = require("./middlewares/logger");
+require("dotenv").config();
 
 const app = express();
 app.use(logger);

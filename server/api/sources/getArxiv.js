@@ -23,3 +23,5 @@ async function getArxiv(query, maxResults = 100) {
 
   return results;
 }
+
+module.exports = getArxiv;

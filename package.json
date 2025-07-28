@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "qwen": "node server/api/queryExpander/qwenFree",
-    "arxiv": "node server/api/sources/arxiv"
+    "qwen": "node server/api/models/qwenFree",
+    "arxiv": "node server/api/sources/arxiv",
+    "server": "nodemon server/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
