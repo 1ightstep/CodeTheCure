@@ -1,71 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import styles from "../page.module.css";
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  useGSAP(
+    () => {
+      const elements = containerRef.current?.querySelectorAll("h1, h2, p");
 
-    const ctx = gsap.context(() => {
-      const elements = containerRef.current!.querySelectorAll("h1, h2, p");
-
-      gsap.from(elements, {
-        duration: 1,
-        y: 30,
-        opacity: 0,
-        stagger: 0.3,
-        ease: "power3.out",
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+      if (elements) {
+        gsap.from(elements, {
+          duration: 1,
+          y: 30,
+          opacity: 0,
+          stagger: 0.3,
+          ease: "power3.out",
+        });
+      }
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <main
-      ref={containerRef}
-      style={{
-        maxWidth: 800,
-        margin: "3rem auto",
-        padding: "0 1rem",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-        color: "#666666", // gray text
-      }}
-    >
-      {/* Main heading */}
-      <h1
-        style={{
-          fontSize: "2.5rem",
-          marginBottom: "2rem",
-          color: "#00bb77",
-          userSelect: "none",
-          fontWeight: "700",
-          textAlign: "center",
-          textDecoration: "underline",
-          textUnderlineOffset: "6px",
-          textDecorationColor: "#00bb77", // underline
-        }}
-      >
-        Welcome to Code The Cure
-      </h1>
+    <main ref={containerRef} className={styles.container}>
+      <h1 className={styles.heading}>Welcome to Code The Cure</h1>
 
-      {/* Who We Are */}
-      <section style={{ marginBottom: "2rem" }}>
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            marginBottom: "0.75rem",
-            color: "#000000", // black subheading
-            userSelect: "none",
-            fontWeight: "600",
-          }}
-        >
-          Who We Are -{">"}
-        </h2>
-        <p style={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+      <section className={styles.section}>
+        <h2 className={styles.subheading}>Who We Are -&gt;</h2>
+        <p className={styles.paragraph}>
           We are a passionate collective of developers, researchers, and
           change-makers united by a common goal: to revolutionize cancer
           diagnosis through cutting-edge technology. Our team combines expertise
@@ -77,20 +43,9 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* What We Do */}
-      <section style={{ marginBottom: "2rem" }}>
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            marginBottom: "0.75rem",
-            color: "#000000",
-            userSelect: "none",
-            fontWeight: "600",
-          }}
-        >
-          What We Do -{">"}
-        </h2>
-        <p style={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+      <section className={styles.section}>
+        <h2 className={styles.subheading}>What We Do -&gt;</h2>
+        <p className={styles.paragraph}>
           Leveraging state-of-the-art AI algorithms and comprehensive data
           analysis, we develop powerful diagnostic tools that assist medical
           professionals in detecting cancer at its earliest stages. Our
@@ -102,20 +57,9 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* Why It Matters */}
-      <section>
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            marginBottom: "0.75rem",
-            color: "#000000",
-            userSelect: "none",
-            fontWeight: "600",
-          }}
-        >
-          Why It Matters -{">"}
-        </h2>
-        <p style={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+      <section className={styles.section}>
+        <h2 className={styles.subheading}>Why It Matters -&gt;</h2>
+        <p className={styles.paragraph}>
           Cancer remains one of the leading causes of death globally, but early
           detection can dramatically improve survival rates and quality of life.
           By advancing diagnostic technology, Code The Cure plays a critical

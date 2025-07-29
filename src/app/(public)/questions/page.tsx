@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import styles from "../page.module.css"; // Update path as needed
 
 interface FAQItem {
   question: string;
@@ -46,92 +48,38 @@ export default function FAQPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // GSAP entrance animation
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const elements = containerRef.current!.querySelectorAll("h1, h2");
-
-      gsap.from(elements, {
-        duration: 1,
+  useGSAP(
+    () => {
+      gsap.from(containerRef.current?.querySelectorAll("h1, h2"), {
         y: 30,
         opacity: 0,
         stagger: 0.2,
         ease: "power3.out",
+        duration: 1,
       });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <main
-      ref={containerRef}
-      style={{
-        maxWidth: 800,
-        margin: "3rem auto",
-        padding: "0 1rem",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "2.5rem",
-          color: "#00bb77",
-          marginBottom: "2rem",
-          textAlign: "center",
-          textDecoration: "underline",
-          textUnderlineOffset: "6px",
-          textDecorationColor: "#00bb77",
-        }}
-      >
-        Frequently Asked Questions
-      </h1>
+    <main ref={containerRef} className={styles.faqContainer}>
+      <h1 className={styles.heading}>Frequently Asked Questions</h1>
 
       {faqs.map((faq, index) => (
         <div
           key={index}
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          style={{
-            borderBottom: "1px solid #ccc",
-            padding: "1rem 0",
-            cursor: "pointer",
-            transition: "background-color 0.3s",
-          }}
+          className={styles.faqItem}
         >
-          <h2
-            style={{
-              fontSize: "1.2rem",
-              color: "#000000",
-              marginBottom: "0.5rem",
-            }}
-          >
-            {faq.question}
-          </h2>
+          <h2 className={styles.faqQuestion}>{faq.question}</h2>
 
           <div
-            style={{
-              maxHeight: hoveredIndex === index ? "300px" : "0px",
-              opacity: hoveredIndex === index ? 1 : 0,
-              transform:
-                hoveredIndex === index
-                  ? "translateY(0px)"
-                  : "translateY(-10px)",
-              overflow: "hidden",
-              transition: "all 0.4s ease",
-            }}
+            className={`${styles.faqAnswer} ${
+              hoveredIndex === index ? styles.faqAnswerVisible : ""
+            }`}
           >
-            <p
-              style={{
-                fontSize: "1.05rem",
-                color: "#666666",
-                paddingTop: "0.3rem",
-              }}
-            >
-              {faq.answer}
-            </p>
+            <p>{faq.answer}</p>
           </div>
         </div>
       ))}
