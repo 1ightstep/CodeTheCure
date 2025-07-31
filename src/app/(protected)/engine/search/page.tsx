@@ -10,39 +10,37 @@ import getSearch from "@/app/api/getSearch";
 
 interface SourceCardProps {
   title: string;
-  publicationDate: string;
-  aiSummary: string;
+  published: string;
+  summary: string;
   author: string;
-  sourceLink: string;
+  link: string;
   onSave: () => void;
   onTrash: () => void;
 }
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q"));
+  const [query, setQuery] = useState(searchParams.get("query"));
 
   const [results, setResults] = useState<SourceCardProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
+    console.log(`Searching for: ${query}`);
     if (!query) return;
-
-    const fetchResults = async () => {
+    (async () => {
       const queryResults: SourceCardProps[] = await getSearch(query);
       setResults(queryResults);
-    };
-
-    setIsLoading(false);
+      setIsLoading(false);
+    })();
   }, [query]);
 
   function handleSearch(newQuery: string) {
     if (!newQuery.trim()) return;
     setQuery(newQuery);
     setIsLoading(true);
-    router.push(`/engine/search?q=${newQuery}`);
-    console.log(`Searching for: ${newQuery}`);
+    router.push(`/engine/search?query=${newQuery}`);
   }
 
   return (
@@ -50,18 +48,14 @@ export default function SearchPage() {
       <div className={styles.searchContentContainer}>
         <SearchBar onSearch={handleSearch} width="100%" height="2rem" />
         <div className={styles.resultContainer}>
-          {isLoading && <h3>Womp Womp, your content is loading</h3>}
-          {results.length === 0 && (
-            <h3>Uhmm, try searching for something else</h3>
-          )}
           {results.map((item, index) => (
             <SourceCard
               key={index}
               title={item.title}
-              publicationDate={item.publicationDate}
-              aiSummary={item.aiSummary}
+              published={item.published}
+              summary={item.summary}
               author={item.author}
-              sourceLink={item.sourceLink}
+              link={item.link}
               onSave={() => console.log("Saved!")}
               onTrash={() => console.log("Trashed!")}
             />

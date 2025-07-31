@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "qwen": "node server/api/models/qwenFree",
-    "arxiv": "node server/api/sources/arxiv",
+    "arxiv": "node server/api/sources/getArxiv",
+    "alex": "node server/api/sources/getOpenAlex",
     "server": "nodemon server/index.js"
   },
   "dependencies": {
@@ -17,11 +18,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@gsap/react": "^2.1.2",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "fast-xml-parser": "^5.2.5",
     "gsap": "^3.13.0",
     "next": "15.3.5",
+    "openai": "^5.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "split-type": "^0.3.4"

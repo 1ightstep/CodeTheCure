@@ -5,20 +5,20 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface SourceCardProps {
   title: string;
-  publicationDate: string;
-  aiSummary: string;
+  published: string;
+  summary: string;
   author: string;
-  sourceLink: string;
+  link: string;
   onSave: () => void;
   onTrash: () => void;
 }
 
 export default function SourceCard({
   title,
-  publicationDate,
-  aiSummary,
+  published,
+  summary,
   author,
-  sourceLink,
+  link,
   onSave,
   onTrash,
 }: SourceCardProps) {
@@ -34,14 +34,14 @@ export default function SourceCard({
       </div>
       <div className={styles.sourceCardHeader}>
         <h3>{title}</h3>
-        <h4>{publicationDate}</h4>
+        <h4>{published}</h4>
       </div>
       <div className={styles.sourceCardBody}>
-        <p className={styles.aiSummary}>{aiSummary}</p>
+        <p className={styles.aiSummary}>{summary}</p>
       </div>
       <div className={styles.sourceCardFooter}>
         <h4>{author}</h4>
-        <h4>{sourceLink}</h4>
+        <h4>{link}</h4>
       </div>
     </div>
   );

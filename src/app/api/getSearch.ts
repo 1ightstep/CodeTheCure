@@ -1,9 +1,9 @@
 interface SourceCardProps {
   title: string;
-  publicationDate: string;
-  aiSummary: string;
+  published: string;
+  summary: string;
   author: string;
-  sourceLink: string;
+  link: string;
   onSave: () => void;
   onTrash: () => void;
 }
@@ -12,12 +12,15 @@ export default async function getSearch(
   query: string
 ): Promise<SourceCardProps[]> {
   try {
-    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+    console.log("Fetching for data");
+    const res = await fetch(
+      `http://localhost:3001/api/v1/search?query=${encodeURIComponent(query)}`
+    );
     if (!res.ok) {
-      throw new Error("Failed to fetch");
+      throw new Error("Failed to fetch for results.");
     }
     const data = await res.json();
-    return data.results;
+    return data;
   } catch (error: unknown) {
     console.log("Something went wrong during querying: " + error);
     return [];
