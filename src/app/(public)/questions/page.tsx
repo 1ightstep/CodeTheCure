@@ -22,8 +22,7 @@ const faqs: FAQItem[] = [
       "We build AI-powered tools that assist doctors in identifying early signs of cancer from medical data, such as imaging or pathology reports, with improved accuracy and speed.",
   },
   {
-    question:
-      "Is your platform intended for patients or medical professionals?",
+    question: "Is your platform for patients or medical professionals?",
     answer:
       "We build AI-powered tools that assist doctors in identifying early signs of cancer from medical data, such as imaging or pathology reports, with improved accuracy and speed.",
   },
