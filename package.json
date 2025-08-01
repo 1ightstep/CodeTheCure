@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "qwen": "node server/api/models/qwenFree",
+    "open": "node server/api/models/openaiPaid",
     "arxiv": "node server/api/sources/getArxiv",
     "alex": "node server/api/sources/getOpenAlex",
     "server": "nodemon server/index.js"

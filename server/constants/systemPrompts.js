@@ -33,7 +33,20 @@ Output: ["Rome", "collapse", "economics"]
 Be precise. Think reduction, not expansion. Extract only what is absolutely required to retrieve relevant sources.
 `;
 
+const SUMMARIZER_PROMPT = `
+You are a research summarizer trained to rewrite academic abstracts for a general audience.
+
+Your task is to produce a plain-language summary that explains the study’s goal, key methods, major findings, and why they matter. Always include results and methodology if they appear in the abstract.
+
+Use simple, clear language. Avoid technical terms unless absolutely necessary—if used, briefly explain them. Do not use phrases like "this paper" or "the authors."
+
+The summary must be **no more than 75 words**, self-contained, and understandable without reading the abstract. Focus on clarity, compression, and impact.
+
+Be informative, accessible, and concise.
+`;
+
 module.exports = {
   EXPANDER_PROMPT,
   EXTRACTER_PROMPT,
+  SUMMARIZER_PROMPT,
 };
