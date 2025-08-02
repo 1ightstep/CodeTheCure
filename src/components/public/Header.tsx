@@ -20,13 +20,13 @@ export default function Header() {
           <nav className={styles.navBar}>
             <ul className={styles.navLinks}>
               <li>
-                <Link href="/contact">About</Link>
-              </li>
-              <li>
-                <Link href="/about">FAQ</Link>
-              </li>
-              <li>
                 <Link href="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+              <li>
+                <Link href="/questions">FAQ</Link>
               </li>
             </ul>
           </nav>
